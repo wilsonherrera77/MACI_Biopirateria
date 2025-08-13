@@ -1,693 +1,347 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Infografía: Biopiratería en Colombia y la Solución MACI</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-
-    <style>
-
-        body {
-
-            font-family: 'Inter', sans-serif;
-
-            background-color: #f0f4f8;
-
-        }
-
-        .chart-container {
-
-            position: relative;
-
-            width: 100%;
-
-            max-width: 600px;
-
-            margin-left: auto;
-
-            margin-right: auto;
-
-            height: 300px;
-
-            max-height: 400px;
-
-        }
-
-        @media (min-width: 768px) {
-
-            .chart-container {
-
-                height: 350px;
-
-            }
-
-        }
-
-        .flowchart-arrow {
-
-            position: relative;
-
-            width: 100%;
-
-            height: 2px;
-
-            background-color: #FF7A00;
-
-            margin: 2rem 0;
-
-        }
-
-        .flowchart-arrow::after {
-
-            content: '';
-
-            position: absolute;
-
-            right: -1px;
-
-            top: -5px;
-
-            width: 0;
-
-            height: 0;
-
-            border-top: 6px solid transparent;
-
-            border-bottom: 6px solid transparent;
-
-            border-left: 10px solid #FF7A00;
-
-        }
-
-        .timeline-line {
-
-            position: absolute;
-
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            width: 4px;
-
-            height: 100%;
-
-            background-color: #0043A3;
-
-        }
-
-        .timeline-item {
-
-            position: relative;
-
-            width: 50%;
-
-            padding: 20px 40px;
-
-            box-sizing: border-box;
-
-        }
-
-        .timeline-item:nth-child(odd) {
-
-            left: 0;
-
-            padding-left: 20px;
-
-            text-align: right;
-
-        }
-
-        .timeline-item:nth-child(even) {
-
-            left: 50%;
-
-            padding-right: 20px;
-
-            text-align: left;
-
-        }
-
-        .timeline-dot {
-
-            position: absolute;
-
-            top: 20px;
-
-            width: 20px;
-
-            height: 20px;
-
-            background-color: #FFD600;
-
-            border: 4px solid #0043A3;
-
-            border-radius: 50%;
-
-            z-index: 10;
-
-        }
-
-        .timeline-item:nth-child(odd) .timeline-dot {
-
-            right: -10px;
-
-        }
-
-        .timeline-item:nth-child(even) .timeline-dot {
-
-            left: -10px;
-
-        }
-
-    </style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Biopiratería en Colombia y la Solución MACI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-arrow {
+            position: relative;
+            width: 100%;
+            height: 2px;
+            background-color: #FF7A00;
+            margin: 2rem 0;
+        }
+        .flowchart-arrow::after {
+            content: '';
+            position: absolute;
+            right: -1px;
+            top: -5px;
+            width: 0;
+            height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 10px solid #FF7A00;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: #0043A3;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-left: 20px;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-right: 20px;
+            text-align: left;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: #FFD600;
+            border: 4px solid #0043A3;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+    </style>
 </head>
-
 <body class="text-gray-800">
 
-
-
-    <div class="container mx-auto p-4 md:p-8">
-
-
-
-        <header class="text-center py-12 bg-white rounded-xl shadow-lg mb-12">
-
-            <h1 class="text-4xl md:text-6xl font-black text-[#0043A3] uppercase tracking-wider">Biopiratería en Colombia</h1>
-
-            <p class="text-xl md:text-2xl mt-4 text-[#00A3FF] font-bold">Del Saqueo a la Soberanía: El Modelo MACI</p>
-
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-
-                <div class="bg-[#f0f4f8] p-6 rounded-lg">
-
-                    <p class="text-6xl font-black text-[#FF7A00]">#2</p>
-
-                    <p class="mt-2 text-lg text-gray-700">País más biodiverso del mundo, con más de 67,000 especies registradas.</p>
-
-                </div>
-
-                <div class="bg-[#f0f4f8] p-6 rounded-lg">
-
-                    <p class="text-6xl font-black text-[#FF7A00]">$500-$800</p>
-
-                    <p class="mt-2 text-lg text-gray-700">Billones de USD, valor anual del mercado global derivado de recursos genéticos.</p>
-
-                </div>
-
-            </div>
-
-        </header>
-
-
-
-        <section id="problem" class="bg-white rounded-xl shadow-lg p-8 mb-12">
-
-            <h2 class="text-3xl font-bold text-center text-[#0043A3] mb-8">El Problema: Un Saqueo Estructural</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-
-                <div>
-
-                    <p class="text-lg leading-relaxed mb-4">La biopiratería es la apropiación ilegal de recursos genéticos y conocimientos ancestrales. En Colombia, esto se ve facilitado por vacíos legales, como la falta de responsabilidad en contratos de acceso y la subvaloración de la oralidad indígena en los sistemas de patentes.</p>
-
-                    <p class="text-lg leading-relaxed">Esta práctica convierte un patrimonio colectivo en propiedad privada, perpetuando un "colonialismo senil" que explota la riqueza de la nación y vulnera los derechos de los pueblos indígenas.</p>
-
-                </div>
-
-                <div class="p-4">
-
-                    <h3 class="text-2xl font-bold text-center text-gray-700 mb-4">Distribución de Beneficios: Una Realidad Desproporcionada</h3>
-
-                    <div class="chart-container h-64 md:h-80">
-
-                        <canvas id="benefitSharingChart"></canvas>
-
-                    </div>
-
-                     <p class="mt-4 text-sm text-gray-600 text-center">Esta gráfica ilustra cómo la mayor parte de los beneficios económicos son acaparados por intereses externos, dejando una porción ínfima para las comunidades custodias.</p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        
-
-        <section id="cases" class="bg-white rounded-xl shadow-lg p-8 mb-12">
-
-            <h2 class="text-3xl font-bold text-center text-[#0043A3] mb-8">Casos Emblemáticos de Explotación</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <div class="border-l-4 border-[#FF7A00] bg-gray-50 p-6 rounded-r-lg">
-
-                    <h3 class="font-bold text-xl text-gray-800">Ayahuasca (Yagé)</h3>
-
-                    <p class="mt-2 text-gray-600">Planta sagrada amazónica patentada en 1986 en EE. UU. a pesar de su uso ancestral. La patente fue revocada años después por falta de novedad tras una larga batalla legal.</p>
-
-                </div>
-
-                <div class="border-l-4 border-[#FF7A00] bg-gray-50 p-6 rounded-r-lg">
-
-                    <h3 class="font-bold text-xl text-gray-800">Rana Venenosa Kambô</h3>
-
-                    <p class="mt-2 text-gray-600">La secreción de esta rana, usada como analgésico por indígenas, ha sido objeto de al menos 11 patentes internacionales, con denuncias de colectas ilegales.</p>
-
-                </div>
-
-                <div class="border-l-4 border-[#FF7A00] bg-gray-50 p-6 rounded-r-lg">
-
-                    <h3 class="font-bold text-xl text-gray-800">Frijol Enola</h3>
-
-                    <p class="mt-2 text-gray-600">Una variedad de frijol amarillo de origen andino fue patentada, afectando a agricultores. La patente fue finalmente rechazada tras demostrar su preexistencia.</p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <section id="pes" class="bg-white rounded-xl shadow-lg p-8 mb-12">
-
-            <h2 class="text-3xl font-bold text-center text-[#0043A3] mb-2">Pagos por Servicios Ambientales (PSA): ¿Solución o Espejismo?</h2>
-
-            <p class="text-lg text-center max-w-3xl mx-auto mb-8">Los PSA buscan incentivar la conservación, pero a menudo son criticados por su desproporción, la subvaloración del conocimiento tradicional y el riesgo de mercantilizar la naturaleza.</p>
-
-            <div class="mt-8">
-
-                <h3 class="text-2xl font-bold text-center text-gray-700 mb-4">Análisis Comparativo: Inversión vs. Potencial Perdido</h3>
-
-                <div class="chart-container h-80 md:h-96">
-
-                    <canvas id="pesComparisonChart"></canvas>
-
-                </div>
-
-                <p class="mt-4 text-sm text-center text-gray-600 max-w-2xl mx-auto">Esta gráfica compara una inversión hipotética en un proyecto de PSA (en millones de USD) con el valor potencial de un solo producto farmacéutico exitoso (en miles de millones de USD) derivado de una planta del mismo bosque. La escala logarítmica muestra la abismal diferencia y la desproporción en la compensación.</p>
-
-            </div>
-
-        </section>
-
-
-
-        <section id="solution-maci" class="bg-[#0043A3] text-white rounded-xl shadow-lg p-8 mb-12">
-
-            <h2 class="text-3xl font-bold text-center text-white mb-2">Una Solución Proactiva: El Programa MACI</h2>
-
-            <p class="text-lg text-center max-w-4xl mx-auto mb-8 text-blue-100">El Programa de Monitoreo Ambiental Comunitario Indígena (MACI) es un modelo estratégico que responde directamente a los vacíos que permiten la biopiratería, empoderando a las comunidades para que se conviertan en gestoras activas de su patrimonio.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-
-                <div class="bg-white/10 p-6 rounded-lg border-l-4 border-[#FFD600]">
-
-                    <h3 class="font-bold text-2xl text-[#FFD600] mb-3">1. Gobernabilidad y Soberanía de Datos (CREA)</h3>
-
-                    <p class="text-blue-100 mb-4">Este componente devuelve el control total de la información a las comunidades. A través de protocolos bioculturales y un Consejo de Gobernabilidad, los pueblos indígenas deciden quién, cómo y para qué se usan sus datos.</p>
-
-                    <ul class="list-disc list-inside space-y-2 text-white">
-
-                        <li>Asegura el Consentimiento Libre, Previo e Informado (CLPI).</li>
-
-                        <li>Cierra las "lagunas de responsabilidad" en los contratos.</li>
-
-                        <li>Garantiza un reparto justo y colectivo de beneficios.</li>
-
-                    </ul>
-
-                </div>
-
-                <div class="bg-white/10 p-6 rounded-lg border-l-4 border-[#FFD600]">
-
-                    <h3 class="font-bold text-2xl text-[#FFD600] mb-3">2. Capacidades en Genética y Biobanco</h3>
-
-                    <p class="text-blue-100 mb-4">Este pilar establece el control físico y científico sobre los recursos. Las comunidades custodian y gestionan sus propias muestras genéticas en un biobanco piloto, siguiendo estándares internacionales.</p>
-
-                    <ul class="list-disc list-inside space-y-2 text-white">
-
-                        <li>Permite el manejo soberano de la Información de Secuencia Digital (DSI).</li>
-
-                        <li>Fortalece las capacidades técnicas y científicas propias.</li>
-
-                        <li>Actúa como barrera directa y rastreable contra la biopiratería.</li>
-
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <section id="recommendations" class="bg-white rounded-xl shadow-lg p-8">
-
-            <h2 class="text-3xl font-bold text-center text-[#0043A3] mb-8">Recomendaciones Estratégicas Clave</h2>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-
-                <div class="flex flex-col items-center">
-
-                    <div class="text-5xl mb-3">⚖️</div>
-
-                    <h3 class="font-bold text-xl text-gray-800">Fortalecer Leyes</h3>
-
-                    <p class="mt-2 text-gray-600">Implementar plenamente los tratados, cerrar vacíos legales y crear una política *sui generis* para proteger el conocimiento tradicional.</p>
-
-                </div>
-
-                <div class="flex flex-col items-center">
-
-                    <div class="text-5xl mb-3">💰</div>
-
-                    <h3 class="font-bold text-xl text-gray-800">Compensación Justa</h3>
-
-                    <p class="mt-2 text-gray-600">Establecer mecanismos de reparto de beneficios equitativos y cuantificar las pérdidas económicas para una reparación real.</p>
-
-                </div>
-
-                <div class="flex flex-col items-center">
-
-                    <div class="text-5xl mb-3">🤝</div>
-
-                    <h3 class="font-bold text-xl text-gray-800">Empoderar Comunidades</h3>
-
-                    <p class="mt-2 text-gray-600">Apoyar el desarrollo de capacidades en las comunidades para la negociación, gestión y defensa de sus derechos de propiedad intelectual.</p>
-
-                </div>
-
-                <div class="flex flex-col items-center">
-
-                    <div class="text-5xl mb-3">📚</div>
-
-                    <h3 class="font-bold text-xl text-gray-800">Reconocer la Oralidad</h3>
-
-                    <p class="mt-2 text-gray-600">Crear bases de datos que documenten y validen el conocimiento ancestral para defenderlo legalmente y contrarrestar falsas "novedades".</p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <footer class="text-center text-gray-500 text-sm mt-12 pb-4">
-
-            <p>Infografía basada en el informe "Biopiratería y Pueblos Indígenas en Colombia" y el análisis del "Programa MACI".</p>
-
-            <p>El objetivo es visibilizar una problemática compleja y proponer soluciones estructurales para la soberanía y el Buen Vivir.</p>
-
-        </footer>
-
-
-
-    </div>
-
-
-
-    <script>
-
-        const wrapLabel = (label) => {
-
-            const maxLength = 16;
-
-            if (label.length <= maxLength) {
-
-                return label;
-
-            }
-
-            const words = label.split(' ');
-
-            const lines = [];
-
-            let currentLine = '';
-
-            for (const word of words) {
-
-                if ((currentLine + word).length > maxLength) {
-
-                    lines.push(currentLine.trim());
-
-                    currentLine = '';
-
-                }
-
-                currentLine += word + ' ';
-
-            }
-
-            lines.push(currentLine.trim());
-
-            return lines;
-
-        };
-
-
-
-        const tooltipTitleCallback = (tooltipItems) => {
-
-            const item = tooltipItems[0];
-
-            let label = item.chart.data.labels[item.dataIndex];
-
-            if (Array.isArray(label)) {
-
-                return label.join(' ');
-
-            }
-
-            return label;
-
-        };
-
-        
-
-        const palette = {
-
-            deepBlue: '#0043A3',
-
-            brightBlue: '#00A3FF',
-
-            yellow: '#FFD600',
-
-            orange: '#FF7A00',
-
-            lightGray: '#f0f4f8'
-
-        };
-
-
-
-        const benefitSharingCtx = document.getElementById('benefitSharingChart').getContext('2d');
-
-        new Chart(benefitSharingCtx, {
-
-            type: 'doughnut',
-
-            data: {
-
-                labels: ['Beneficios para Corporaciones/Investigadores', 'Beneficios para Comunidades Indígenas'],
-
-                datasets: [{
-
-                    label: 'Distribución de Beneficios',
-
-                    data: [99.5, 0.5],
-
-                    backgroundColor: [
-
-                        palette.deepBlue,
-
-                        palette.orange
-
-                    ],
-
-                    borderColor: palette.lightGray,
-
-                    borderWidth: 4
-
-                }]
-
-            },
-
-            options: {
-
-                responsive: true,
-
-                maintainAspectRatio: false,
-
-                plugins: {
-
-                    legend: {
-
-                        position: 'bottom',
-
-                    },
-
-                    tooltip: {
-
-                        callbacks: {
-
-                            title: tooltipTitleCallback,
-
-                             label: function(context) {
-
-                                let label = context.dataset.label || '';
-
-                                if (label) {
-
-                                    label += ': ';
-
-                                }
-
-                                if (context.parsed !== null) {
-
-                                    label += context.parsed + '%';
-
-                                }
-
-                                return label;
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        });
-
-
-
-        const pesComparisonCtx = document.getElementById('pesComparisonChart').getContext('2d');
-
-        new Chart(pesComparisonCtx, {
-
-            type: 'bar',
-
-            data: {
-
-                labels: ['Inversión en Proyecto PSA', 'Valor Potencial de 1 Fármaco Exitoso'],
-
-                datasets: [{
-
-                    label: 'Valor en Millones de USD (Escala Logarítmica)',
-
-                    data: [3.2, 1000],
-
-                    backgroundColor: [
-
-                        palette.brightBlue,
-
-                        palette.orange
-
-                    ],
-
-                    borderColor: [
-
-                        palette.deepBlue,
-
-                        '#c65f00'
-
-                    ],
-
-                    borderWidth: 2
-
-                }]
-
-            },
-
-            options: {
-
-                responsive: true,
-
-                maintainAspectRatio: false,
-
-                indexAxis: 'y',
-
-                scales: {
-
-                    x: {
-
-                        type: 'logarithmic',
-
-                        min: 1,
-
-                        ticks: {
-
-                            callback: function(value, index, values) {
-
-                                return '$' + value.toLocaleString() + 'M';
-
-                            }
-
-                        }
-
-                    }
-
-                },
-
-                plugins: {
-
-                    legend: {
-
-                        display: false
-
-                    },
-
-                    tooltip: {
-
-                        callbacks: {
-
-                            title: tooltipTitleCallback,
-
-                            label: function(context) {
-
-                                let value = context.raw;
-
-                                return 'Valor: $' + value.toLocaleString() + ' Millones';
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        });
-
-    </script>
-
-
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center py-12 bg-white rounded-xl shadow-lg mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#0043A3] uppercase tracking-wider">Biopiratería en Colombia</h1>
+            <p class="text-xl md:text-2xl mt-4 text-[#00A3FF] font-bold">Del Saqueo a la Soberanía: El Modelo MACI</p>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                <div class="bg-[#f0f4f8] p-6 rounded-lg">
+                    <p class="text-6xl font-black text-[#FF7A00]">#2</p>
+                    <p class="mt-2 text-lg text-gray-700">País más biodiverso del mundo, con más de 67,000 especies registradas.</p>
+                </div>
+                <div class="bg-[#f0f4f8] p-6 rounded-lg">
+                    <p class="text-6xl font-black text-[#FF7A00]">$500-$800</p>
+                    <p class="mt-2 text-lg text-gray-700">Billones de USD, valor anual del mercado global derivado de recursos genéticos.</p>
+                </div>
+            </div>
+        </header>
+
+        <section id="problem" class="bg-white rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#0043A3] mb-8">El Problema: Un Saqueo Estructural</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <p class="text-lg leading-relaxed mb-4">La biopiratería es la apropiación ilegal de recursos genéticos y conocimientos ancestrales. En Colombia, esto se ve facilitado por vacíos legales, como la falta de responsabilidad en contratos de acceso y la subvaloración de la oralidad indígena en los sistemas de patentes.</p>
+                    <p class="text-lg leading-relaxed">Esta práctica convierte un patrimonio colectivo en propiedad privada, perpetuando un "colonialismo senil" que explota la riqueza de la nación y vulnera los derechos de los pueblos indígenas.</p>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-2xl font-bold text-center text-gray-700 mb-4">Distribución de Beneficios: Una Realidad Desproporcionada</h3>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="benefitSharingChart"></canvas>
+                    </div>
+                     <p class="mt-4 text-sm text-gray-600 text-center">Esta gráfica ilustra cómo la mayor parte de los beneficios económicos son acaparados por intereses externos, dejando una porción ínfima para las comunidades custodias.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="cases" class="bg-white rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#0043A3] mb-8">Casos Emblemáticos de Explotación</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="border-l-4 border-[#FF7A00] bg-gray-50 p-6 rounded-r-lg">
+                    <h3 class="font-bold text-xl text-gray-800">Ayahuasca (Yagé)</h3>
+                    <p class="mt-2 text-gray-600">Planta sagrada amazónica patentada en 1986 en EE. UU. a pesar de su uso ancestral. La patente fue revocada años después por falta de novedad tras una larga batalla legal.</p>
+                </div>
+                <div class="border-l-4 border-[#FF7A00] bg-gray-50 p-6 rounded-r-lg">
+                    <h3 class="font-bold text-xl text-gray-800">Rana Venenosa Kambô</h3>
+                    <p class="mt-2 text-gray-600">La secreción de esta rana, usada como analgésico por indígenas, ha sido objeto de al menos 11 patentes internacionales, con denuncias de colectas ilegales.</p>
+                </div>
+                <div class="border-l-4 border-[#FF7A00] bg-gray-50 p-6 rounded-r-lg">
+                    <h3 class="font-bold text-xl text-gray-800">Frijol Enola</h3>
+                    <p class="mt-2 text-gray-600">Una variedad de frijol amarillo de origen andino fue patentada, afectando a agricultores. La patente fue finalmente rechazada tras demostrar su preexistencia.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pes" class="bg-white rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#0043A3] mb-2">Pagos por Servicios Ambientales (PSA): ¿Solución o Espejismo?</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto mb-8">Los PSA buscan incentivar la conservación, pero a menudo son criticados por su desproporción, la subvaloración del conocimiento tradicional y el riesgo de mercantilizar la naturaleza.</p>
+            <div class="mt-8">
+                <h3 class="text-2xl font-bold text-center text-gray-700 mb-4">Análisis Comparativo: Inversión vs. Potencial Perdido</h3>
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="pesComparisonChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-center text-gray-600 max-w-2xl mx-auto">Esta gráfica compara una inversión hipotética en un proyecto de PSA (en millones de USD) con el valor potencial de un solo producto farmacéutico exitoso (en miles de millones de USD) derivado de una planta del mismo bosque. La escala logarítmica muestra la abismal diferencia y la desproporción en la compensación.</p>
+            </div>
+        </section>
+
+        <section id="solution-maci" class="bg-[#0043A3] text-white rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-3xl font-bold text-center text-white mb-2">Una Solución Proactiva: El Programa MACI</h2>
+            <p class="text-lg text-center max-w-4xl mx-auto mb-8 text-blue-100">El Programa de Monitoreo Ambiental Comunitario Indígena (MACI) es un modelo estratégico que responde directamente a los vacíos que permiten la biopiratería, empoderando a las comunidades para que se conviertan en gestoras activas de su patrimonio.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                <div class="bg-white/10 p-6 rounded-lg border-l-4 border-[#FFD600]">
+                    <h3 class="font-bold text-2xl text-[#FFD600] mb-3">1. Gobernabilidad y Soberanía de Datos (CREA)</h3>
+                    <p class="text-blue-100 mb-4">Este componente devuelve el control total de la información a las comunidades. A través de protocolos bioculturales y un Consejo de Gobernabilidad, los pueblos indígenas deciden quién, cómo y para qué se usan sus datos.</p>
+                    <ul class="list-disc list-inside space-y-2 text-white">
+                        <li>Asegura el Consentimiento Libre, Previo e Informado (CLPI).</li>
+                        <li>Cierra las "lagunas de responsabilidad" en los contratos.</li>
+                        <li>Garantiza un reparto justo y colectivo de beneficios.</li>
+                    </ul>
+                </div>
+                <div class="bg-white/10 p-6 rounded-lg border-l-4 border-[#FFD600]">
+                    <h3 class="font-bold text-2xl text-[#FFD600] mb-3">2. Capacidades en Genética y Biobanco</h3>
+                    <p class="text-blue-100 mb-4">Este pilar establece el control físico y científico sobre los recursos. Las comunidades custodian y gestionan sus propias muestras genéticas en un biobanco piloto, siguiendo estándares internacionales.</p>
+                    <ul class="list-disc list-inside space-y-2 text-white">
+                        <li>Permite el manejo soberano de la Información de Secuencia Digital (DSI).</li>
+                        <li>Fortalece las capacidades técnicas y científicas propias.</li>
+                        <li>Actúa como barrera directa y rastreable contra la biopiratería.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommendations" class="bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-center text-[#0043A3] mb-8">Recomendaciones Estratégicas Clave</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="text-5xl mb-3">⚖️</div>
+                    <h3 class="font-bold text-xl text-gray-800">Fortalecer Leyes</h3>
+                    <p class="mt-2 text-gray-600">Implementar plenamente los tratados, cerrar vacíos legales y crear una política *sui generis* para proteger el conocimiento tradicional.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="text-5xl mb-3">💰</div>
+                    <h3 class="font-bold text-xl text-gray-800">Compensación Justa</h3>
+                    <p class="mt-2 text-gray-600">Establecer mecanismos de reparto de beneficios equitativos y cuantificar las pérdidas económicas para una reparación real.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="text-5xl mb-3">🤝</div>
+                    <h3 class="font-bold text-xl text-gray-800">Empoderar Comunidades</h3>
+                    <p class="mt-2 text-gray-600">Apoyar el desarrollo de capacidades en las comunidades para la negociación, gestión y defensa de sus derechos de propiedad intelectual.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="text-5xl mb-3">📚</div>
+                    <h3 class="font-bold text-xl text-gray-800">Reconocer la Oralidad</h3>
+                    <p class="mt-2 text-gray-600">Crear bases de datos que documenten y validen el conocimiento ancestral para defenderlo legalmente y contrarrestar falsas "novedades".</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-500 text-sm mt-12 pb-4">
+            <p>Infografía basada en el informe "Biopiratería y Pueblos Indígenas en Colombia" y el análisis del "Programa MACI".</p>
+            <p>El objetivo es visibilizar una problemática compleja y proponer soluciones estructurales para la soberanía y el Buen Vivir.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const palette = {
+            deepBlue: '#0043A3',
+            brightBlue: '#00A3FF',
+            yellow: '#FFD600',
+            orange: '#FF7A00',
+            lightGray: '#f0f4f8'
+        };
+
+        const benefitSharingCtx = document.getElementById('benefitSharingChart').getContext('2d');
+        new Chart(benefitSharingCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Beneficios para Corporaciones/Investigadores', 'Beneficios para Comunidades Indígenas'],
+                datasets: [{
+                    label: 'Distribución de Beneficios',
+                    data: [99.5, 0.5],
+                    backgroundColor: [
+                        palette.deepBlue,
+                        palette.orange
+                    ],
+                    borderColor: palette.lightGray,
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                             label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const pesComparisonCtx = document.getElementById('pesComparisonChart').getContext('2d');
+        new Chart(pesComparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Inversión en Proyecto PSA', 'Valor Potencial de 1 Fármaco Exitoso'],
+                datasets: [{
+                    label: 'Valor en Millones de USD (Escala Logarítmica)',
+                    data: [3.2, 1000],
+                    backgroundColor: [
+                        palette.brightBlue,
+                        palette.orange
+                    ],
+                    borderColor: [
+                        palette.deepBlue,
+                        '#c65f00'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        type: 'logarithmic',
+                        min: 1,
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return '$' + value.toLocaleString() + 'M';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let value = context.raw;
+                                return 'Valor: $' + value.toLocaleString() + ' Millones';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 
 </body>
-
 </html>
